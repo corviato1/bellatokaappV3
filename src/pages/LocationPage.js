@@ -152,8 +152,6 @@ const LocationPage = () => {
     }
   };
 
-  const hasActiveFilters = Object.values(filters).some(v => v);
-
   if (!section) {
     return <div className="location-page"><h1>Location not found</h1></div>;
   }
