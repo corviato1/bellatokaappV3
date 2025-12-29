@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import sectionsData from '../data/sections.json';
 import plantsData from '../data/plants.json';
 import locationDataFile from '../data/locationData.json';
-import './LocationPage.css';
+import '../styles/LocationPage.css';
 
 const LocationPage = () => {
   const { locationId } = useParams();
