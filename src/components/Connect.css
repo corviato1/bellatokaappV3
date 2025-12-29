@@ -1,0 +1,235 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+  padding: 0;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.modal-header .back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+}
+
+.modal-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  line-height: 1;
+}
+
+.modal-header .back-btn:hover,
+.modal-header .close-btn:hover {
+  color: #333;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.connect-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.connect-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.connect-option:hover {
+  border-color: #5cb85c;
+  background: #f8fff8;
+}
+
+.connect-option.metamask {
+  border-color: #f5841f20;
+}
+
+.connect-option.metamask:hover {
+  border-color: #f5841f;
+  background: #fff8f3;
+}
+
+.option-icon {
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: #4a9a4a;
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 1.25rem;
+  color: #666;
+}
+
+.switch-link button {
+  background: none;
+  border: none;
+  color: #5cb85c;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.switch-link button:hover {
+  text-decoration: underline;
+}
+
+.ens-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.ens-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ens-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ens-option:hover {
+  border-color: #5cb85c;
+}
+
+.ens-option.selected {
+  border-color: #5cb85c;
+  background: #f8fff8;
+}
+
+.ens-option input {
+  accent-color: #5cb85c;
+}
+
+.ens-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skip-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skip-btn:hover {
+  border-color: #999;
+  color: #333;
+}
