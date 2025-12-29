@@ -1,0 +1,36 @@
+{
+  "plants": [
+    {
+      "id": "BT-2024-001",
+      "strain": "applescotti",
+      "strainDisplay": "Applescotti",
+      "currentLocation": "f10",
+      "startDate": "2024-03-16",
+      "status": "harvested"
+    },
+    {
+      "id": "BT-2024-002",
+      "strain": "gelato-33",
+      "strainDisplay": "Gelato 33",
+      "currentLocation": "f10",
+      "startDate": "2024-03-16",
+      "status": "harvested"
+    },
+    {
+      "id": "BT-2025-001",
+      "strain": "blue-dream",
+      "strainDisplay": "Blue Dream",
+      "currentLocation": "v2",
+      "startDate": "2025-08-01",
+      "status": "active"
+    },
+    {
+      "id": "BT-2025-002",
+      "strain": "p81",
+      "strainDisplay": "P81",
+      "currentLocation": "v1",
+      "startDate": "2025-08-08",
+      "status": "active"
+    }
+  ]
+}
