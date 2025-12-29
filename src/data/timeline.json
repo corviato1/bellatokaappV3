@@ -1,0 +1,109 @@
+{
+  "v1": [
+    { "label": "Clones Received", "date": "2025-08-08", "status": "completed" },
+    { "label": "Quality Control", "date": "2025-08-08", "status": "completed" }
+  ],
+  "v2": [
+    { "label": "Clones Received", "date": "2025-08-01", "status": "completed" },
+    { "label": "Quality Control", "date": "2025-08-01", "status": "completed" },
+    { "label": "QC Issues", "date": "2025-08-01", "status": "issue", "notes": "Thrips, Algae (5+), Leaf Burn" },
+    { "label": "Regalia CG Treatment", "date": "2025-08-02", "status": "completed" },
+    { "label": "Transplant", "date": "2025-08-02", "status": "completed" }
+  ],
+  "v3": [
+    { "label": "Area Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Awaiting New Clones", "date": "2025-01-01", "status": "pending" }
+  ],
+  "v4": [
+    { "label": "Area Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Maintenance Complete", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f1": [
+    { "label": "Light Schedule Changed", "date": "2025-01-01", "status": "completed" },
+    { "label": "Transition Started", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f2": [
+    { "label": "Week 2 Feeding", "date": "2025-01-01", "status": "completed" },
+    { "label": "Defoliation", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f3": [
+    { "label": "Stretch Phase", "date": "2025-01-01", "status": "completed" },
+    { "label": "Trellis Adjusted", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f4": [
+    { "label": "Bud Sites Forming", "date": "2025-01-01", "status": "completed" },
+    { "label": "Lollipopping", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f5": [
+    { "label": "Peak Bloom", "date": "2025-01-01", "status": "completed" },
+    { "label": "PK Boost Added", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f6": [
+    { "label": "Bud Fattening", "date": "2025-01-01", "status": "completed" },
+    { "label": "Humidity Lowered", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f7": [
+    { "label": "Trichome Check", "date": "2025-01-01", "status": "completed" },
+    { "label": "Mostly Clear", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f8": [
+    { "label": "Ripening", "date": "2025-01-01", "status": "completed" },
+    { "label": "Trichomes Cloudy", "date": "2025-01-01", "status": "completed" }
+  ],
+  "f9": [
+    { "label": "Flush Started", "date": "2025-01-01", "status": "completed" },
+    { "label": "Plain Water Only", "date": "2025-01-01", "status": "completed" }
+  ],
+  "h1": [
+    { "label": "Plants Hung", "date": "2025-01-01", "status": "completed" },
+    { "label": "Drying Started", "date": "2025-01-01", "status": "completed" }
+  ],
+  "h2": [
+    { "label": "Stems Snapping", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Trim", "date": "2025-01-01", "status": "completed" }
+  ],
+  "decon": [
+    { "label": "Area Sanitized", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "completed" }
+  ],
+  "c1": [
+    { "label": "Plants cut down and hung", "date": "2024-12-22", "status": "completed" },
+    { "label": "Plants first trim", "date": "2025-01-28", "status": "completed" },
+    { "label": "Plants cured", "date": "2025-02-19", "status": "completed" },
+    { "label": "Plants second trim", "date": "2025-05-06", "status": "completed" }
+  ],
+  "c2": [
+    { "label": "Plants cut down and hung", "date": "2024-12-22", "status": "completed" },
+    { "label": "Plants first trim", "date": "2025-03-25", "status": "completed" },
+    { "label": "Plants cured", "date": "2025-04-08", "status": "completed" },
+    { "label": "Plants second trim", "date": "2025-05-06", "status": "completed" }
+  ],
+  "c3": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c4": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c5": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c6": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c7": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c8": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ],
+  "c9": [
+    { "label": "Jar Cleaned", "date": "2025-01-01", "status": "completed" },
+    { "label": "Ready for Use", "date": "2025-01-01", "status": "pending" }
+  ]
+}

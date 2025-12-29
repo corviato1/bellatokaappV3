@@ -1,0 +1,95 @@
+{
+  "v1": [
+    { "name": "Power SI Potassium Silicate", "image": "power-si" },
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Cal-Mag Plus", "image": "cal-mag" }
+  ],
+  "v2": [
+    { "name": "Power SI Potassium Silicate", "image": "power-si" },
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Cal-Mag Plus", "image": "cal-mag" },
+    { "name": "General Hydroponics Diamond Nectar", "image": "diamond-nectar" },
+    { "name": "Botanicare Hydroguard", "image": "hydroguard" }
+  ],
+  "v3": [
+    { "name": "Power SI Potassium Silicate", "image": "power-si" },
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" }
+  ],
+  "v4": [
+    { "name": "Power SI Potassium Silicate", "image": "power-si" },
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" }
+  ],
+  "f1": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Cal-Mag Plus", "image": "cal-mag" },
+    { "name": "Primordial Solutions PaleoBloom", "image": "paleo-bloom" }
+  ],
+  "f2": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Cal-Mag Plus", "image": "cal-mag" },
+    { "name": "Primordial Solutions PaleoBloom", "image": "paleo-bloom" },
+    { "name": "Botanicare Hydroplex", "image": "hydroplex" }
+  ],
+  "f3": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Primordial Solutions PaleoBloom", "image": "paleo-bloom" },
+    { "name": "Botanicare Hydroplex", "image": "hydroplex" },
+    { "name": "House and Garden Bud-XL", "image": "bud-xl" }
+  ],
+  "f4": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Primordial Solutions PaleoBloom", "image": "paleo-bloom" },
+    { "name": "Botanicare Hydroplex", "image": "hydroplex" },
+    { "name": "House and Garden Bud-XL", "image": "bud-xl" }
+  ],
+  "f5": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Hydroplex", "image": "hydroplex" },
+    { "name": "House and Garden Bud-XL", "image": "bud-xl" },
+    { "name": "House and Garden Top Shooter", "image": "top-shooter" }
+  ],
+  "f6": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "House and Garden Bud-XL", "image": "bud-xl" },
+    { "name": "House and Garden Top Shooter", "image": "top-shooter" },
+    { "name": "Botanicare Sweet Raw", "image": "sweet-raw" }
+  ],
+  "f7": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "House and Garden Bud-XL", "image": "bud-xl" },
+    { "name": "Botanicare Sweet Raw", "image": "sweet-raw" }
+  ],
+  "f8": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Sweet Raw", "image": "sweet-raw" }
+  ],
+  "f9": [
+    { "name": "House and Garden Cocos A", "image": "cocos-a" },
+    { "name": "House and Garden Cocos B", "image": "cocos-b" },
+    { "name": "Botanicare Sweet Raw", "image": "sweet-raw" }
+  ],
+  "h1": [],
+  "h2": [],
+  "decon": [],
+  "c1": [],
+  "c2": [],
+  "c3": [],
+  "c4": [],
+  "c5": [],
+  "c6": [],
+  "c7": [],
+  "c8": [],
+  "c9": []
+}

@@ -4,7 +4,7 @@
       "id": "BT-2024-001",
       "strain": "applescotti",
       "strainDisplay": "Applescotti",
-      "currentLocation": "f10",
+      "currentLocation": "c1",
       "startDate": "2024-03-16",
       "status": "harvested"
     },
@@ -12,7 +12,7 @@
       "id": "BT-2024-002",
       "strain": "gelato-33",
       "strainDisplay": "Gelato 33",
-      "currentLocation": "f10",
+      "currentLocation": "c2",
       "startDate": "2024-03-16",
       "status": "harvested"
     },
