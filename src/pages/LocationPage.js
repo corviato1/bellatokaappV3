@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import sectionsData from '../data/sections.json';
-import plantsData from '../data/plants.json';
-import locationDataFile from '../data/locationData.json';
+import sectionsData from '../data/location/sections.json';
+import plantsData from '../data/location/plants.json';
+import locationDataFile from '../data/location/locationData.json';
 import '../styles/LocationPage.css';
 
 const LocationPage = () => {
@@ -445,26 +445,25 @@ const LocationPage = () => {
                 <h3>Images</h3>
                 <div className="images-grid">
                   {(() => {
-                    const allImages = [];
-                    locationEntries.forEach(entry => {
-                      const imgPlant = plants.find(p => p.id === entry.plantId);
-                      (entry.images || []).forEach(img => {
-                        allImages.push({ img, plant: imgPlant });
-                      });
-                    });
-                    if (allImages.length === 0) {
-                      return <p className="no-data">No images recorded</p>;
-                    }
-                    return allImages.map((item, idx) => {
+                    const locationFolder = locationId.toUpperCase();
+                    const imageFiles = [];
+                    
+                    for (let i = 1; i <= 13; i++) {
+                      const imgName = String(i).padStart(3, '0') + '.png';
                       try {
-                        const imgSrc = require(`../images/strains/${item.plant?.strain}/${item.img}`);
-                        return (
-                          <img key={idx} src={imgSrc} alt={`${item.plant?.strainDisplay || 'Plant'} ${idx + 1}`} />
-                        );
+                        const imgSrc = require(`../images/location/${locationFolder}/${imgName}`);
+                        imageFiles.push({ src: imgSrc, name: imgName });
                       } catch {
-                        return null;
                       }
-                    });
+                    }
+                    
+                    if (imageFiles.length === 0) {
+                      return <p className="no-data">No images available for this location</p>;
+                    }
+                    
+                    return imageFiles.map((item, idx) => (
+                      <img key={idx} src={item.src} alt={`${section.name} ${idx + 1}`} />
+                    ));
                   })()}
                 </div>
               </div>

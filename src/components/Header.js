@@ -30,6 +30,11 @@ function Header() {
               </Link>
             </li>
             <li>
+              <Link to="/facility" className={pathname === '/facility' ? 'active' : ''}>
+                Facility
+              </Link>
+            </li>
+            <li>
               <button className="connect-btn" onClick={() => setIsConnectOpen(true)}>
                 Connect
               </button>

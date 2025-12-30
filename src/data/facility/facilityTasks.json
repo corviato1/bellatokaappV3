@@ -1,0 +1,17 @@
+{
+  "facilityTasks": [
+    { "id": "hvac-l-filter", "label": "Change HVAC-L filter", "category": "hvac", "frequency": "monthly" },
+    { "id": "hvac-m-filter", "label": "Change HVAC-M filter", "category": "hvac", "frequency": "monthly" },
+    { "id": "hvac-r-filter", "label": "Change HVAC-R filter", "category": "hvac", "frequency": "monthly" },
+    { "id": "dehu-l-filter", "label": "Change DEHU-L filter", "category": "hvac", "frequency": "monthly" },
+    { "id": "dehu-r-filter", "label": "Change DEHU-R filter", "category": "hvac", "frequency": "monthly" },
+    { "id": "mop-within-racks", "label": "Mop within racks", "category": "cleaning", "frequency": "monthly" },
+    { "id": "mop-outside-racks", "label": "Mop outside of racks", "category": "cleaning", "frequency": "monthly" },
+    { "id": "perimeter-spray", "label": "Perimeter spray Wondercide", "category": "pest-prevention", "frequency": "monthly" },
+    { "id": "sanitize-drains", "label": "Sanitize floor drains", "category": "cleaning", "frequency": "monthly" },
+    { "id": "replace-co2-tanks", "label": "Replace/refill CO2 tanks", "category": "equipment", "frequency": "monthly" },
+    { "id": "calibrate-sensors", "label": "Calibrate pH/EC sensors", "category": "equipment", "frequency": "monthly" },
+    { "id": "inspect-fire-extinguishers", "label": "Inspect fire extinguishers", "category": "safety", "frequency": "monthly" },
+    { "id": "clean-light-fixtures", "label": "Clean light fixtures", "category": "maintenance", "frequency": "monthly" }
+  ]
+}

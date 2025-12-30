@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import plantsData from '../data/plants.json';
-import locationDataFile from '../data/locationData.json';
-import sectionsData from '../data/sections.json';
+import plantsData from '../data/location/plants.json';
+import locationDataFile from '../data/location/locationData.json';
+import sectionsData from '../data/location/sections.json';
 import '../styles/PlantDetailPage.css';
 
 const PlantDetailPage = () => {

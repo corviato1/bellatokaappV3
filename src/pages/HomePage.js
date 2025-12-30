@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sectionsData from '../data/sections.json';
-import plantsData from '../data/plants.json';
+import sectionsData from '../data/location/sections.json';
+import plantsData from '../data/location/plants.json';
 import '../styles/HomePage.css';
 
 const HomePage = () => {

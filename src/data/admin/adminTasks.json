@@ -1,0 +1,12 @@
+{
+  "locationTasks": [
+    { "id": "tank-valve", "label": "Shut off tank valve", "category": "equipment" },
+    { "id": "inline-screen", "label": "Clean inline screen", "category": "equipment" },
+    { "id": "defoliate", "label": "Defoliate", "category": "plant-care" },
+    { "id": "check-thrips", "label": "Check for thrips", "category": "pest-check" },
+    { "id": "check-gnats", "label": "Check for gnats", "category": "pest-check" },
+    { "id": "check-fungus-mold", "label": "Check for fungus/mold", "category": "pest-check" },
+    { "id": "inspect-bud-rot", "label": "Inspect for bud rot", "category": "plant-health" },
+    { "id": "inspect-branches", "label": "Inspect for broken branches", "category": "plant-health" }
+  ]
+}

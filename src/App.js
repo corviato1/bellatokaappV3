@@ -5,6 +5,7 @@ import LocationPage from './pages/LocationPage';
 import PlantDetailPage from './pages/PlantDetailPage';
 import AboutPage from './pages/AboutPage';
 import AdminPage from './pages/AdminPage';
+import FacilityReportPage from './pages/FacilityReportPage';
 import HomePage from './pages/HomePage';
 import './styles/global.css';
 import './styles/responsive.css';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/plant/:plantId" element={<Navigate to="stats" replace />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/facility" element={<FacilityReportPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
