@@ -1,14 +1,17 @@
 
-# Bugs!
+## Bugs!
 * 
 
 
-# TO DO:
+## TO DO:
+
+
+## Notes:
 
 
 
 
-# Dependencies
+### Dependencies
 
 npm install styled-components
 npm install react-router-dom
