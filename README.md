@@ -13,7 +13,7 @@
 
 ### Dependencies
 
-npm install styled-components
+- npm install styled-components
 npm install react-router-dom
 npm install react-pdf
 npm install react-responsive
