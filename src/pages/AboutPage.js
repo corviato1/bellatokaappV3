@@ -68,7 +68,7 @@ const AboutPage = () => {
               <p>Have questions about our cultivation process or interested in learning more?</p>
               <div className="info-item">
                 <strong>Email:</strong>
-                <span>info@bellatoka.com</span>
+                <span>contact@bellatoka.com</span>
               </div>
               <div className="info-item">
                 <strong>Location:</strong>
