@@ -24,19 +24,20 @@ const AboutPage = () => {
           <div className="process-grid">
             <div className="process-item">
               <h3>Minimal Footprint</h3>
-              <p>PENDING</p>
+              <p>- PENDING</p>
             </div>
             <div className="process-item">
               <h3>In depth Supply Chain</h3>
-              <p>PENDING</p>
+              <p>- PENDING</p>
             </div>
             <div className="process-item">
-              <h3>PENDING</h3>
-              <p>PENDING</p>
+              <h3>Premium standards</h3>
+              <p>- Custom Terpen Orders</p>
+              <p>- More Info</p>
             </div>
             <div className="process-item">
-              <h3>PENDING</h3>
-              <p>PENDING</p>
+              <h3>Data Utiliztion</h3>
+              <p>- PENDING</p>
             </div>
           </div>
         </section>
@@ -72,7 +73,7 @@ const AboutPage = () => {
               </div>
               <div className="info-item">
                 <strong>Location:</strong>
-                <span>Indoor Cultivation Facility</span>
+                <span>Sonoma County, California</span>
               </div>
               <div className="info-item">
                 <strong>Hours:</strong>
