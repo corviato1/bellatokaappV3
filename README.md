@@ -16,6 +16,8 @@
 
 * workflow for plant location:  Admin page API into metrc to update data.  Home page to metrc API to display content.  Review security standards to protect pipeline
 
+* connect data with supabase
+
 ## Notes:
 * 
 
