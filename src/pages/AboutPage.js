@@ -20,23 +20,23 @@ const AboutPage = () => {
         </section>
 
         <section className="about-section">
-          <h2>Our Process</h2>
+          <h2>Our Pillars</h2>
           <div className="process-grid">
             <div className="process-item">
-              <h3>Vegetative (V1-V4)</h3>
-              <p>Plants develop strong root systems and foliage over 4 weeks.</p>
+              <h3>Minimal Footprint</h3>
+              <p>PENDING</p>
             </div>
             <div className="process-item">
-              <h3>Flowering (F1-F10)</h3>
-              <p>10 weeks of carefully controlled flowering for optimal bud development.</p>
+              <h3>In depth Supply Chain</h3>
+              <p>PENDING</p>
             </div>
             <div className="process-item">
-              <h3>Hanging (H1-H2)</h3>
-              <p>Harvested plants are hung to dry in controlled conditions.</p>
+              <h3>PENDING</h3>
+              <p>PENDING</p>
             </div>
             <div className="process-item">
-              <h3>Curing (C1-C9)</h3>
-              <p>Final curing stage to develop flavor and potency profiles.</p>
+              <h3>PENDING</h3>
+              <p>PENDING</p>
             </div>
           </div>
         </section>
