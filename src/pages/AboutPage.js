@@ -76,8 +76,44 @@ const AboutPage = () => {
                 <span>Sonoma County, California</span>
               </div>
               <div className="info-item">
-                <strong>Hours:</strong>
-                <span>By Appointment Only</span>
+                <strong>Links To Learn</strong>
+                <span>
+                  <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 1</a>
+                    <a>    </a>
+                    <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 2</a>
+                    <a>    </a>
+                    <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 3</a>
+                    <a>    </a>
+                    <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 4</a>
+                    <a>    </a>
+                    <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 5</a>
+                    <a>    </a>
+                    <a
+                    href='https://bellatoka.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    >Link 6</a>
+                </span>
               </div>
             </div>
           </div>
