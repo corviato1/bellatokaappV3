@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Header from "./components/Header";
-import PasswordProtection from "./components/PasswordProtection";
 import LocationPage from "./pages/LocationPage";
 import PlantDetailPage from "./pages/PlantDetailPage";
 import AboutPage from "./pages/AboutPage";
@@ -17,21 +16,6 @@ import "./styles/global.css";
 import "./styles/responsive.css";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const authenticated = localStorage.getItem("authenticated");
-    if (authenticated === "true") {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  if (!isAuthenticated) {
-    return (
-      <PasswordProtection onAuthenticated={() => setIsAuthenticated(true)} />
-    );
-  }
-
   return (
     <Router>
       <div className="app-container">
