@@ -11,6 +11,25 @@ const PasswordProtection = ({ onAuthenticated }) => {
     setIsSubmitting(true);
     setError("");
 
+    // Check if running locally (not on Netlify)
+    const isLocal =
+      window.location.hostname === "localhost" ||
+      window.location.hostname.includes("replit") ||
+      window.location.hostname.includes(".dev");
+
+    if (isLocal) {
+      // For local development, use environment variable or default password
+      const devPassword = process.env.REACT_APP_ADMIN_PASSWORD || "admin123";
+      if (password === devPassword) {
+        localStorage.setItem("adminAuthenticated", "true");
+        onAuthenticated();
+      } else {
+        setError("Incorrect password");
+      }
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch("/.netlify/functions/auth", {
         method: "POST",
