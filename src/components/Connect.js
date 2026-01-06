@@ -1,58 +1,68 @@
-import React, { useState } from 'react';
-import '../styles/Connect.css';
+import React, { useState } from "react";
+import "../styles/Connect.css";
 
 const Connect = ({ isOpen, onClose }) => {
-  const [view, setView] = useState('main');
-  const [loginData, setLoginData] = useState({ emailOrPhone: '', password: '' });
-  const [signupData, setSignupData] = useState({ email: '', phone: '', password: '', confirmPassword: '' });
+  const [view, setView] = useState("main");
+  const [loginData, setLoginData] = useState({
+    emailOrPhone: "",
+    password: "",
+  });
+  const [signupData, setSignupData] = useState({
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [ensOptions, setEnsOptions] = useState([]);
-  const [selectedEns, setSelectedEns] = useState('');
+  const [selectedEns, setSelectedEns] = useState("");
 
   if (!isOpen) return null;
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Login attempt:', loginData);
-    alert('Login functionality coming soon!');
+    console.log("Login attempt:", loginData);
+    alert("Login functionality coming soon!");
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
     if (signupData.password !== signupData.confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
-    console.log('Signup attempt:', signupData);
-    alert('Signup functionality coming soon!');
+    console.log("Signup attempt:", signupData);
+    alert("Signup functionality coming soon!");
   };
 
   const handleMetamask = async () => {
-    if (typeof window.ethereum === 'undefined') {
-      alert('Metamask is not installed. Please install Metamask to continue.');
+    if (typeof window.ethereum === "undefined") {
+      alert("Metamask is not installed. Please install Metamask to continue.");
       return;
     }
 
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      console.log('Connected account:', accounts[0]);
-      
-      const mockEnsNames = ['bellatoka.eth', 'grower.eth'];
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      console.log("Connected account:", accounts[0]);
+
+      const mockEnsNames = ["bellatoka.eth", "grower.eth"];
       if (mockEnsNames.length > 0) {
         setEnsOptions(mockEnsNames);
-        setView('ens');
+        setView("ens");
       } else {
-        alert('Wallet connected successfully!');
+        alert("Wallet connected successfully!");
         onClose();
       }
     } catch (error) {
-      console.error('Metamask connection error:', error);
-      alert('Failed to connect to Metamask');
+      console.error("Metamask connection error:", error);
+      alert("Failed to connect to Metamask");
     }
   };
 
   const handleEnsSelect = () => {
     if (selectedEns) {
-      console.log('Selected ENS:', selectedEns);
+      console.log("Selected ENS:", selectedEns);
       alert(`Connected with ${selectedEns}!`);
       onClose();
     }
@@ -62,15 +72,17 @@ const Connect = ({ isOpen, onClose }) => {
     <div className="modal-content">
       <div className="modal-header">
         <h2>Connect</h2>
-        <button className="close-btn" onClick={onClose}>&times;</button>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
       </div>
       <div className="modal-body">
         <div className="connect-options">
-          <button className="connect-option" onClick={() => setView('login')}>
+          <button className="connect-option" onClick={() => setView("login")}>
             <span className="option-icon">📧</span>
             <span>Login with Email or Phone</span>
           </button>
-          <button className="connect-option" onClick={() => setView('signup')}>
+          <button className="connect-option" onClick={() => setView("signup")}>
             <span className="option-icon">📝</span>
             <span>Sign Up</span>
           </button>
@@ -86,9 +98,13 @@ const Connect = ({ isOpen, onClose }) => {
   const renderLoginView = () => (
     <div className="modal-content">
       <div className="modal-header">
-        <button className="back-btn" onClick={() => setView('main')}>&larr;</button>
+        <button className="back-btn" onClick={() => setView("main")}>
+          &larr;
+        </button>
         <h2>Login</h2>
-        <button className="close-btn" onClick={onClose}>&times;</button>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
       </div>
       <div className="modal-body">
         <form onSubmit={handleLogin}>
@@ -98,7 +114,9 @@ const Connect = ({ isOpen, onClose }) => {
               type="text"
               placeholder="Enter email or phone number"
               value={loginData.emailOrPhone}
-              onChange={(e) => setLoginData({ ...loginData, emailOrPhone: e.target.value })}
+              onChange={(e) =>
+                setLoginData({ ...loginData, emailOrPhone: e.target.value })
+              }
               required
             />
           </div>
@@ -108,14 +126,19 @@ const Connect = ({ isOpen, onClose }) => {
               type="password"
               placeholder="Enter password"
               value={loginData.password}
-              onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+              onChange={(e) =>
+                setLoginData({ ...loginData, password: e.target.value })
+              }
               required
             />
           </div>
-          <button type="submit" className="submit-btn">Login</button>
+          <button type="submit" className="submit-btn">
+            Login
+          </button>
         </form>
         <p className="switch-link">
-          Don't have an account? <button onClick={() => setView('signup')}>Sign Up</button>
+          Don't have an account?{" "}
+          <button onClick={() => setView("signup")}>Sign Up</button>
         </p>
       </div>
     </div>
@@ -124,9 +147,13 @@ const Connect = ({ isOpen, onClose }) => {
   const renderSignupView = () => (
     <div className="modal-content">
       <div className="modal-header">
-        <button className="back-btn" onClick={() => setView('main')}>&larr;</button>
+        <button className="back-btn" onClick={() => setView("main")}>
+          &larr;
+        </button>
         <h2>Sign Up</h2>
-        <button className="close-btn" onClick={onClose}>&times;</button>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
       </div>
       <div className="modal-body">
         <form onSubmit={handleSignup}>
@@ -136,7 +163,9 @@ const Connect = ({ isOpen, onClose }) => {
               type="email"
               placeholder="Enter email"
               value={signupData.email}
-              onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, email: e.target.value })
+              }
               required
             />
           </div>
@@ -146,7 +175,9 @@ const Connect = ({ isOpen, onClose }) => {
               type="tel"
               placeholder="Enter phone number"
               value={signupData.phone}
-              onChange={(e) => setSignupData({ ...signupData, phone: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, phone: e.target.value })
+              }
             />
           </div>
           <div className="form-group">
@@ -155,7 +186,9 @@ const Connect = ({ isOpen, onClose }) => {
               type="password"
               placeholder="Create password"
               value={signupData.password}
-              onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, password: e.target.value })
+              }
               required
             />
           </div>
@@ -165,14 +198,22 @@ const Connect = ({ isOpen, onClose }) => {
               type="password"
               placeholder="Confirm password"
               value={signupData.confirmPassword}
-              onChange={(e) => setSignupData({ ...signupData, confirmPassword: e.target.value })}
+              onChange={(e) =>
+                setSignupData({
+                  ...signupData,
+                  confirmPassword: e.target.value,
+                })
+              }
               required
             />
           </div>
-          <button type="submit" className="submit-btn">Create Account</button>
+          <button type="submit" className="submit-btn">
+            Create Account
+          </button>
         </form>
         <p className="switch-link">
-          Already have an account? <button onClick={() => setView('login')}>Login</button>
+          Already have an account?{" "}
+          <button onClick={() => setView("login")}>Login</button>
         </p>
       </div>
     </div>
@@ -181,17 +222,25 @@ const Connect = ({ isOpen, onClose }) => {
   const renderEnsView = () => (
     <div className="modal-content">
       <div className="modal-header">
-        <button className="back-btn" onClick={() => setView('main')}>&larr;</button>
+        <button className="back-btn" onClick={() => setView("main")}>
+          &larr;
+        </button>
         <h2>Select ENS Name</h2>
-        <button className="close-btn" onClick={onClose}>&times;</button>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
       </div>
       <div className="modal-body">
         <p className="ens-description">
-          We found the following ENS names in your wallet. Would you like to connect one to your account?
+          We found the following ENS names in your wallet. Would you like to
+          connect one to your account?
         </p>
         <div className="ens-options">
           {ensOptions.map((ens, idx) => (
-            <label key={idx} className={`ens-option ${selectedEns === ens ? 'selected' : ''}`}>
+            <label
+              key={idx}
+              className={`ens-option ${selectedEns === ens ? "selected" : ""}`}
+            >
               <input
                 type="radio"
                 name="ens"
@@ -204,7 +253,11 @@ const Connect = ({ isOpen, onClose }) => {
           ))}
         </div>
         <div className="ens-actions">
-          <button className="submit-btn" onClick={handleEnsSelect} disabled={!selectedEns}>
+          <button
+            className="submit-btn"
+            onClick={handleEnsSelect}
+            disabled={!selectedEns}
+          >
             Connect with ENS
           </button>
           <button className="skip-btn" onClick={onClose}>
@@ -218,10 +271,10 @@ const Connect = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        {view === 'main' && renderMainView()}
-        {view === 'login' && renderLoginView()}
-        {view === 'signup' && renderSignupView()}
-        {view === 'ens' && renderEnsView()}
+        {view === "main" && renderMainView()}
+        {view === "login" && renderLoginView()}
+        {view === "signup" && renderSignupView()}
+        {view === "ens" && renderEnsView()}
       </div>
     </div>
   );

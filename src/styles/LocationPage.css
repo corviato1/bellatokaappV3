@@ -50,7 +50,7 @@
 
 .nav-button {
   padding: 10px 20px;
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -122,12 +122,12 @@
 }
 
 .filter-btn.active {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
-  border-color: #75B9E7;
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
+  border-color: #75b9e7;
 }
 
 .filter-btn:hover {
-  border-color: #75B9E7;
+  border-color: #75b9e7;
 }
 
 .content-layout {
@@ -160,7 +160,7 @@
   margin: 0 0 15px 0;
   color: #333;
   font-size: 1.2rem;
-  border-bottom: 2px solid #75B9E7;
+  border-bottom: 2px solid #75b9e7;
   padding-bottom: 10px;
 }
 
@@ -313,7 +313,7 @@
   margin: 0 0 15px 0;
   color: #333;
   font-size: 1.1rem;
-  border-bottom: 2px solid #75B9E7;
+  border-bottom: 2px solid #75b9e7;
   padding-bottom: 10px;
 }
 
@@ -337,12 +337,12 @@
 
 .schedule-day:hover {
   background: #e9ecef;
-  border-color: #75B9E7;
+  border-color: #75b9e7;
 }
 
 .schedule-day.active {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
-  border-color: #75B9E7;
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
+  border-color: #75b9e7;
 }
 
 .schedule-day.has-entries {
@@ -387,7 +387,7 @@
   padding: 10px;
   background: #f8f9fa;
   border-radius: 4px;
-  border-left: 3px solid #75B9E7;
+  border-left: 3px solid #75b9e7;
 }
 
 .day-task .task-label {
@@ -418,7 +418,7 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .entry-header {
@@ -530,8 +530,8 @@
 
 .nutrient-item:hover,
 .nutrient-item.selected {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
-  border-color: #75B9E7;
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
+  border-color: #75b9e7;
 }
 
 .nutrient-image-container {
@@ -542,7 +542,7 @@
 .nutrient-image-container img {
   max-width: 300px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .pest-grid {
@@ -568,7 +568,7 @@
 }
 
 .pest-item a {
-  color: #75B9E7;
+  color: #75b9e7;
   text-decoration: none;
 }
 

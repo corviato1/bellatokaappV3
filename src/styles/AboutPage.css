@@ -162,11 +162,11 @@
   .contact-container {
     grid-template-columns: 1fr;
   }
-  
+
   .about-section h1 {
     font-size: 2rem;
   }
-  
+
   .process-grid {
     grid-template-columns: 1fr;
   }

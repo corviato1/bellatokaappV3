@@ -85,7 +85,7 @@
 
 .qr-scan-frame::before,
 .qr-scan-frame::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 30px;
   height: 30px;

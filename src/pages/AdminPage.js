@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import adminTasksData from '../data/admin/adminTasks.json';
-import sectionsData from '../data/location/sections.json';
-import '../styles/AdminPage.css';
+import React, { useState, useEffect } from "react";
+import adminTasksData from "../data/admin/adminTasks.json";
+import sectionsData from "../data/location/sections.json";
+import "../styles/AdminPage.css";
 
 const AdminPage = () => {
   const { locationTasks, scheduledTasks } = adminTasksData;
@@ -9,17 +9,17 @@ const AdminPage = () => {
 
   const [dayOffset, setDayOffset] = useState(0);
   const [formData, setFormData] = useState({
-    locationId: 'v1',
+    locationId: "v1",
     completedTasks: [],
-    notes: '',
-    photos: []
+    notes: "",
+    photos: [],
   });
 
   const [reports, setReports] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('adminReports');
+    const saved = localStorage.getItem("adminReports");
     if (saved) {
       setReports(JSON.parse(saved));
     }
@@ -28,21 +28,29 @@ const AdminPage = () => {
   const getDayInfo = (offset) => {
     const date = new Date();
     date.setDate(date.getDate() + offset);
-    
+
     const dayOfWeek = date.getDay();
-    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayNames = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const dayName = dayNames[dayOfWeek];
-    
+
     const dayOfMonth = date.getDate();
     const weekNumber = Math.ceil(dayOfMonth / 7);
     const weekName = `Week ${Math.min(weekNumber, 4)}`;
-    
+
     return {
       date,
       dayName,
       weekName,
       dayOfWeek,
-      isWeekday: dayOfWeek >= 1 && dayOfWeek <= 5
+      isWeekday: dayOfWeek >= 1 && dayOfWeek <= 5,
     };
   };
 
@@ -63,20 +71,23 @@ const AdminPage = () => {
 
   const getCurrentTasks = () => {
     const info = getDayInfo(dayOffset);
-    
+
     if (!info.isWeekday || !scheduledTasks[info.dayName]) {
       return [];
     }
-    
+
     const dayTasks = scheduledTasks[info.dayName];
     return dayTasks[info.weekName] || [];
   };
 
   const handleTaskToggle = (taskId) => {
-    setFormData(prev => {
+    setFormData((prev) => {
       const exists = prev.completedTasks.includes(taskId);
       if (exists) {
-        return { ...prev, completedTasks: prev.completedTasks.filter(id => id !== taskId) };
+        return {
+          ...prev,
+          completedTasks: prev.completedTasks.filter((id) => id !== taskId),
+        };
       }
       return { ...prev, completedTasks: [...prev.completedTasks, taskId] };
     });
@@ -84,16 +95,19 @@ const AdminPage = () => {
 
   const handlePhotoUpload = (e) => {
     const files = Array.from(e.target.files);
-    files.forEach(file => {
+    files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setFormData(prev => ({
+        setFormData((prev) => ({
           ...prev,
-          photos: [...prev.photos, {
-            name: file.name,
-            data: event.target.result,
-            timestamp: new Date().toISOString()
-          }]
+          photos: [
+            ...prev.photos,
+            {
+              name: file.name,
+              data: event.target.result,
+              timestamp: new Date().toISOString(),
+            },
+          ],
         }));
       };
       reader.readAsDataURL(file);
@@ -101,17 +115,17 @@ const AdminPage = () => {
   };
 
   const removePhoto = (index) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      photos: prev.photos.filter((_, i) => i !== index)
+      photos: prev.photos.filter((_, i) => i !== index),
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (formData.completedTasks.length === 0 && !formData.notes.trim()) {
-      alert('Please select at least one task or add notes before submitting.');
+      alert("Please select at least one task or add notes before submitting.");
       return;
     }
 
@@ -119,90 +133,92 @@ const AdminPage = () => {
     const report = {
       id: `report-${Date.now()}`,
       ...formData,
-      date: info.date.toISOString().split('T')[0],
+      date: info.date.toISOString().split("T")[0],
       dayName: info.dayName,
       weekName: info.weekName,
-      submittedAt: new Date().toISOString()
+      submittedAt: new Date().toISOString(),
     };
 
     const updatedReports = [report, ...reports];
     setReports(updatedReports);
-    localStorage.setItem('adminReports', JSON.stringify(updatedReports));
+    localStorage.setItem("adminReports", JSON.stringify(updatedReports));
 
     setFormData({
       locationId: formData.locationId,
       completedTasks: [],
-      notes: '',
-      photos: []
+      notes: "",
+      photos: [],
     });
 
-    alert('Report submitted successfully!');
+    alert("Report submitted successfully!");
   };
 
   const getTaskLabel = (taskId) => {
     const allTasks = [...locationTasks];
-    Object.values(scheduledTasks).forEach(dayTasks => {
-      Object.values(dayTasks).forEach(weekTasks => {
+    Object.values(scheduledTasks).forEach((dayTasks) => {
+      Object.values(dayTasks).forEach((weekTasks) => {
         allTasks.push(...weekTasks);
       });
     });
-    const task = allTasks.find(t => t.id === taskId);
+    const task = allTasks.find((t) => t.id === taskId);
     return task ? task.label : taskId;
   };
 
   const deleteReport = (reportId) => {
-    const updatedReports = reports.filter(r => r.id !== reportId);
+    const updatedReports = reports.filter((r) => r.id !== reportId);
     setReports(updatedReports);
-    localStorage.setItem('adminReports', JSON.stringify(updatedReports));
+    localStorage.setItem("adminReports", JSON.stringify(updatedReports));
   };
 
   const currentTasks = getCurrentTasks();
   const dayInfo = getDayInfo(dayOffset);
 
   const groupedScheduledTasks = currentTasks.reduce((acc, task) => {
-    const cat = task.category || 'general';
+    const cat = task.category || "general";
     if (!acc[cat]) acc[cat] = [];
     acc[cat].push(task);
     return acc;
   }, {});
 
   const groupedLocationTasks = {
-    'Equipment': locationTasks.filter(t => t.category === 'equipment'),
-    'Plant Care': locationTasks.filter(t => t.category === 'plant-care'),
-    'Pest Checks': locationTasks.filter(t => t.category === 'pest-check'),
-    'Plant Health': locationTasks.filter(t => t.category === 'plant-health')
+    Equipment: locationTasks.filter((t) => t.category === "equipment"),
+    "Plant Care": locationTasks.filter((t) => t.category === "plant-care"),
+    "Pest Checks": locationTasks.filter((t) => t.category === "pest-check"),
+    "Plant Health": locationTasks.filter((t) => t.category === "plant-health"),
   };
 
   return (
     <div className="admin-page landscape">
       <div className="admin-header">
         <h1>Staff Daily Report</h1>
-        <button 
-          className={`history-toggle ${showHistory ? 'active' : ''}`}
+        <button
+          className={`history-toggle ${showHistory ? "active" : ""}`}
           onClick={() => setShowHistory(!showHistory)}
         >
-          {showHistory ? 'New Report' : 'View History'}
+          {showHistory ? "New Report" : "View History"}
         </button>
       </div>
 
       {!showHistory ? (
         <div className="admin-content-landscape">
           <div className="day-navigation">
-            <button 
+            <button
               className="nav-btn prev"
-              onClick={() => setDayOffset(prev => prev - 1)}
+              onClick={() => setDayOffset((prev) => prev - 1)}
             >
               Previous Day
             </button>
             <div className="current-day-display">
               <h2>{getDateLabel(dayOffset)}</h2>
               {!dayInfo.isWeekday && (
-                <span className="weekend-notice">Weekend - No scheduled tasks</span>
+                <span className="weekend-notice">
+                  Weekend - No scheduled tasks
+                </span>
               )}
             </div>
-            <button 
+            <button
               className="nav-btn next"
-              onClick={() => setDayOffset(prev => prev + 1)}
+              onClick={() => setDayOffset((prev) => prev + 1)}
             >
               Next Day
             </button>
@@ -216,9 +232,14 @@ const AdminPage = () => {
                   <div className="form-group">
                     <select
                       value={formData.locationId}
-                      onChange={(e) => setFormData(prev => ({ ...prev, locationId: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          locationId: e.target.value,
+                        }))
+                      }
                     >
-                      {sections.map(section => (
+                      {sections.map((section) => (
                         <option key={section.id} value={section.id}>
                           {section.name} ({section.type})
                         </option>
@@ -229,27 +250,40 @@ const AdminPage = () => {
 
                 {currentTasks.length > 0 && (
                   <div className="form-section scheduled-tasks-section">
-                    <h2>Scheduled Tasks for {dayInfo.dayName} {dayInfo.weekName}</h2>
-                    {Object.entries(groupedScheduledTasks).map(([category, tasks]) => (
-                      <div key={category} className="task-category">
-                        <h3>{category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}</h3>
-                        <div className="tasks-grid">
-                          {tasks.map(task => (
-                            <label 
-                              key={task.id} 
-                              className={`task-item scheduled ${formData.completedTasks.includes(task.id) ? 'selected' : ''}`}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={formData.completedTasks.includes(task.id)}
-                                onChange={() => handleTaskToggle(task.id)}
-                              />
-                              <span className="task-label">{task.label}</span>
-                            </label>
-                          ))}
+                    <h2>
+                      Scheduled Tasks for {dayInfo.dayName} {dayInfo.weekName}
+                    </h2>
+                    {Object.entries(groupedScheduledTasks).map(
+                      ([category, tasks]) => (
+                        <div key={category} className="task-category">
+                          <h3>
+                            {category.charAt(0).toUpperCase() +
+                              category.slice(1).replace("-", " ")}
+                          </h3>
+                          <div className="tasks-grid">
+                            {tasks.map((task) => (
+                              <label
+                                key={task.id}
+                                className={`task-item scheduled ${
+                                  formData.completedTasks.includes(task.id)
+                                    ? "selected"
+                                    : ""
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={formData.completedTasks.includes(
+                                    task.id
+                                  )}
+                                  onChange={() => handleTaskToggle(task.id)}
+                                />
+                                <span className="task-label">{task.label}</span>
+                              </label>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -257,26 +291,34 @@ const AdminPage = () => {
               <div className="form-column right-column">
                 <div className="form-section">
                   <h2>Daily Checklist</h2>
-                  {Object.entries(groupedLocationTasks).map(([category, tasks]) => (
-                    <div key={category} className="task-category">
-                      <h3>{category}</h3>
-                      <div className="tasks-grid">
-                        {tasks.map(task => (
-                          <label 
-                            key={task.id} 
-                            className={`task-item ${formData.completedTasks.includes(task.id) ? 'selected' : ''}`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={formData.completedTasks.includes(task.id)}
-                              onChange={() => handleTaskToggle(task.id)}
-                            />
-                            <span className="task-label">{task.label}</span>
-                          </label>
-                        ))}
+                  {Object.entries(groupedLocationTasks).map(
+                    ([category, tasks]) => (
+                      <div key={category} className="task-category">
+                        <h3>{category}</h3>
+                        <div className="tasks-grid">
+                          {tasks.map((task) => (
+                            <label
+                              key={task.id}
+                              className={`task-item ${
+                                formData.completedTasks.includes(task.id)
+                                  ? "selected"
+                                  : ""
+                              }`}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={formData.completedTasks.includes(
+                                  task.id
+                                )}
+                                onChange={() => handleTaskToggle(task.id)}
+                              />
+                              <span className="task-label">{task.label}</span>
+                            </label>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
 
                 <div className="form-section">
@@ -299,7 +341,11 @@ const AdminPage = () => {
                       {formData.photos.map((photo, idx) => (
                         <div key={idx} className="photo-preview">
                           <img src={photo.data} alt={photo.name} />
-                          <button type="button" onClick={() => removePhoto(idx)} className="remove-photo">
+                          <button
+                            type="button"
+                            onClick={() => removePhoto(idx)}
+                            className="remove-photo"
+                          >
                             X
                           </button>
                         </div>
@@ -313,14 +359,21 @@ const AdminPage = () => {
                   <textarea
                     placeholder="Additional observations, issues, or notes..."
                     value={formData.notes}
-                    onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        notes: e.target.value,
+                      }))
+                    }
                     rows={4}
                   />
                 </div>
               </div>
             </div>
 
-            <button type="submit" className="submit-btn">Submit Report</button>
+            <button type="submit" className="submit-btn">
+              Submit Report
+            </button>
           </form>
         </div>
       ) : (
@@ -330,17 +383,19 @@ const AdminPage = () => {
             <p className="no-reports">No reports submitted yet.</p>
           ) : (
             <div className="reports-list landscape-reports">
-              {reports.map(report => (
+              {reports.map((report) => (
                 <div key={report.id} className="report-card">
                   <div className="report-header">
-                    <span className="report-location">{report.locationId.toUpperCase()}</span>
+                    <span className="report-location">
+                      {report.locationId.toUpperCase()}
+                    </span>
                     <span className="report-date">
                       {new Date(report.date).toLocaleDateString()}
                       {report.dayName && ` - ${report.dayName}`}
                       {report.weekName && ` (${report.weekName})`}
                     </span>
-                    <button 
-                      className="delete-report" 
+                    <button
+                      className="delete-report"
                       onClick={() => deleteReport(report.id)}
                     >
                       Delete
@@ -350,7 +405,7 @@ const AdminPage = () => {
                     <div className="report-tasks">
                       <strong>Tasks:</strong>
                       <ul>
-                        {report.completedTasks.map(taskId => (
+                        {report.completedTasks.map((taskId) => (
                           <li key={taskId}>{getTaskLabel(taskId)}</li>
                         ))}
                       </ul>

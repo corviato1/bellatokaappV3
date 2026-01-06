@@ -58,7 +58,7 @@
 }
 
 .tab-btn.active {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
 }
 
 .tab-content {
@@ -130,7 +130,7 @@
 }
 
 .location-badge {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
   padding: 4px 12px;
   border-radius: 15px;
   font-weight: 600;
@@ -206,8 +206,8 @@
 
 .nutrient-card:hover,
 .nutrient-card.selected {
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
-  border-color: #75B9E7;
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
+  border-color: #75b9e7;
 }
 
 .nutrient-detail {
@@ -218,7 +218,7 @@
 .nutrient-detail img {
   max-width: 300px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .stage-nutrients {
@@ -279,7 +279,7 @@
 }
 
 .pest-card a {
-  color: #75B9E7;
+  color: #75b9e7;
   text-decoration: none;
 }
 
@@ -293,7 +293,7 @@
 
 .pest-link button {
   padding: 12px 30px;
-  background: linear-gradient(145deg, #9FE7F5, #75B9E7);
+  background: linear-gradient(145deg, #9fe7f5, #75b9e7);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -324,7 +324,7 @@
 .gallery-item {
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item img {

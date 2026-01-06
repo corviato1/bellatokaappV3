@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import plantsData from '../data/location/plants.json';
-import locationDataFile from '../data/location/locationData.json';
-import sectionsData from '../data/location/sections.json';
-import '../styles/PlantDetailPage.css';
+import React, { useState, useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import plantsData from "../data/location/plants.json";
+import locationDataFile from "../data/location/locationData.json";
+import sectionsData from "../data/location/sections.json";
+import "../styles/PlantDetailPage.css";
 
 const PlantDetailPage = () => {
   const { plantId, tab } = useParams();
@@ -14,17 +14,17 @@ const PlantDetailPage = () => {
   const { entries } = locationDataFile;
   const { sections } = sectionsData;
 
-  const extractedId = plantId.split('-').slice(0, 3).join('-');
-  const plant = plants.find(p => p.id === extractedId);
+  const extractedId = plantId.split("-").slice(0, 3).join("-");
+  const plant = plants.find((p) => p.id === extractedId);
 
   const plantEntries = useMemo(() => {
     if (!plant) return [];
     return entries
-      .filter(e => e.plantId === plant.id)
+      .filter((e) => e.plantId === plant.id)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [entries, plant]);
 
-  const tabs = ['stats', 'nutrients', 'pest-management', 'images'];
+  const tabs = ["stats", "nutrients", "pest-management", "images"];
 
   const getNutrientImage = (imageName) => {
     try {
@@ -62,12 +62,12 @@ const PlantDetailPage = () => {
     return (
       <div className="plant-detail-page">
         <h1>Plant not found</h1>
-        <button onClick={() => navigate('/')}>Go Home</button>
+        <button onClick={() => navigate("/")}>Go Home</button>
       </div>
     );
   }
 
-  const currentSection = sections.find(s => s.id === plant.currentLocation);
+  const currentSection = sections.find((s) => s.id === plant.currentLocation);
 
   const renderStats = () => {
     return (
@@ -81,32 +81,38 @@ const PlantDetailPage = () => {
             </div>
             <div className="summary-item">
               <span className="label">Current Location</span>
-              <span className="value">{currentSection?.name || 'N/A'}</span>
+              <span className="value">{currentSection?.name || "N/A"}</span>
             </div>
             <div className="summary-item">
               <span className="label">Status</span>
-              <span className={`value status-${plant.status}`}>{plant.status}</span>
+              <span className={`value status-${plant.status}`}>
+                {plant.status}
+              </span>
             </div>
           </div>
         </div>
 
         <div className="timeline-container">
           <h3>Complete Timeline</h3>
-          {plantEntries.map(entry => {
-            const section = sections.find(s => s.id === entry.locationId);
+          {plantEntries.map((entry) => {
+            const section = sections.find((s) => s.id === entry.locationId);
             return (
               <div key={entry.id} className="timeline-entry">
                 <div className="timeline-entry-header">
                   <span className="location-badge">{section?.name}</span>
                   <span className="week-badge">Week {entry.week}</span>
-                  <span className="date">{new Date(entry.date).toLocaleDateString()}</span>
+                  <span className="date">
+                    {new Date(entry.date).toLocaleDateString()}
+                  </span>
                 </div>
                 <div className="timeline-items">
                   {entry.stats?.timeline.map((item, idx) => (
                     <div key={idx} className={`timeline-item ${item.status}`}>
                       <span className="timeline-label">{item.label}</span>
                       <span className="timeline-date">{item.date}</span>
-                      {item.notes && <span className="timeline-notes">{item.notes}</span>}
+                      {item.notes && (
+                        <span className="timeline-notes">{item.notes}</span>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -120,8 +126,8 @@ const PlantDetailPage = () => {
 
   const renderNutrients = () => {
     const allNutrients = new Map();
-    plantEntries.forEach(entry => {
-      entry.nutrients?.forEach(n => {
+    plantEntries.forEach((entry) => {
+      entry.nutrients?.forEach((n) => {
         if (!allNutrients.has(n.name)) {
           allNutrients.set(n.name, n);
         }
@@ -133,10 +139,16 @@ const PlantDetailPage = () => {
         <h3>Nutrients Used Throughout Lifecycle</h3>
         <div className="nutrients-grid">
           {Array.from(allNutrients.values()).map((nutrient, idx) => (
-            <div 
+            <div
               key={idx}
-              className={`nutrient-card ${selectedNutrient === nutrient.image ? 'selected' : ''}`}
-              onClick={() => setSelectedNutrient(selectedNutrient === nutrient.image ? null : nutrient.image)}
+              className={`nutrient-card ${
+                selectedNutrient === nutrient.image ? "selected" : ""
+              }`}
+              onClick={() =>
+                setSelectedNutrient(
+                  selectedNutrient === nutrient.image ? null : nutrient.image
+                )
+              }
             >
               <span>{nutrient.name}</span>
             </div>
@@ -144,20 +156,27 @@ const PlantDetailPage = () => {
         </div>
         {selectedNutrient && (
           <div className="nutrient-detail">
-            <img src={getNutrientImage(selectedNutrient)} alt={selectedNutrient} />
+            <img
+              src={getNutrientImage(selectedNutrient)}
+              alt={selectedNutrient}
+            />
           </div>
         )}
 
         <h3>Nutrients by Stage</h3>
-        {plantEntries.map(entry => {
+        {plantEntries.map((entry) => {
           if (!entry.nutrients || entry.nutrients.length === 0) return null;
-          const section = sections.find(s => s.id === entry.locationId);
+          const section = sections.find((s) => s.id === entry.locationId);
           return (
             <div key={entry.id} className="stage-nutrients">
-              <h4>{section?.name} - Week {entry.week}</h4>
+              <h4>
+                {section?.name} - Week {entry.week}
+              </h4>
               <div className="nutrients-list">
                 {entry.nutrients.map((n, idx) => (
-                  <span key={idx} className="nutrient-tag">{n.name}</span>
+                  <span key={idx} className="nutrient-tag">
+                    {n.name}
+                  </span>
                 ))}
               </div>
             </div>
@@ -169,8 +188,8 @@ const PlantDetailPage = () => {
 
   const renderPestManagement = () => {
     const allPestItems = new Map();
-    plantEntries.forEach(entry => {
-      entry.pestManagement?.forEach(p => {
+    plantEntries.forEach((entry) => {
+      entry.pestManagement?.forEach((p) => {
         if (!allPestItems.has(p.name)) {
           allPestItems.set(p.name, p);
         }
@@ -194,7 +213,7 @@ const PlantDetailPage = () => {
           ))}
         </div>
         <div className="pest-link">
-          <button onClick={() => navigate('/pesticide-list')}>
+          <button onClick={() => navigate("/pesticide-list")}>
             View Full Pesticide List
           </button>
         </div>
@@ -204,13 +223,13 @@ const PlantDetailPage = () => {
 
   const renderImages = () => {
     const allImages = [];
-    plantEntries.forEach(entry => {
-      entry.images?.forEach(img => {
+    plantEntries.forEach((entry) => {
+      entry.images?.forEach((img) => {
         allImages.push({
           src: getStrainImage(plant.strain, img),
-          location: sections.find(s => s.id === entry.locationId)?.name,
+          location: sections.find((s) => s.id === entry.locationId)?.name,
           week: entry.week,
-          date: entry.date
+          date: entry.date,
         });
       });
     });
@@ -222,15 +241,20 @@ const PlantDetailPage = () => {
           <p className="no-images">No images available for this plant.</p>
         ) : (
           <div className="gallery-grid">
-            {allImages.filter(img => img.src).map((img, idx) => (
-              <div key={idx} className="gallery-item">
-                <img src={img.src} alt={`${plant.strainDisplay} at ${img.location}`} />
-                <div className="image-info">
-                  <span>{img.location}</span>
-                  <span>Week {img.week}</span>
+            {allImages
+              .filter((img) => img.src)
+              .map((img, idx) => (
+                <div key={idx} className="gallery-item">
+                  <img
+                    src={img.src}
+                    alt={`${plant.strainDisplay} at ${img.location}`}
+                  />
+                  <div className="image-info">
+                    <span>{img.location}</span>
+                    <span>Week {img.week}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         )}
       </div>
@@ -240,7 +264,9 @@ const PlantDetailPage = () => {
   return (
     <div className="plant-detail-page">
       <div className="plant-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          Back
+        </button>
         <div className="plant-info">
           <h1>{plant.strainDisplay}</h1>
           <span className="plant-id">ID: {plant.id}</span>
@@ -248,22 +274,24 @@ const PlantDetailPage = () => {
       </div>
 
       <div className="tabs">
-        {tabs.map(t => (
+        {tabs.map((t) => (
           <button
             key={t}
-            className={`tab-btn ${tab === t ? 'active' : ''}`}
+            className={`tab-btn ${tab === t ? "active" : ""}`}
             onClick={() => navigate(`/plant/${plantId}/${t}`)}
           >
-            {t === 'pest-management' ? 'Pest Management' : t.charAt(0).toUpperCase() + t.slice(1)}
+            {t === "pest-management"
+              ? "Pest Management"
+              : t.charAt(0).toUpperCase() + t.slice(1)}
           </button>
         ))}
       </div>
 
       <div className="tab-content">
-        {tab === 'stats' && renderStats()}
-        {tab === 'nutrients' && renderNutrients()}
-        {tab === 'pest-management' && renderPestManagement()}
-        {tab === 'images' && renderImages()}
+        {tab === "stats" && renderStats()}
+        {tab === "nutrients" && renderNutrients()}
+        {tab === "pest-management" && renderPestManagement()}
+        {tab === "images" && renderImages()}
       </div>
     </div>
   );

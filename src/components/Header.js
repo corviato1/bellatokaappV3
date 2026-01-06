@@ -5,37 +5,51 @@ import "../styles/Header.css";
 
 function Header() {
   const location = useLocation();
-  const pathname = location?.pathname || '/';
+  const pathname = location?.pathname || "/";
   const [isConnectOpen, setIsConnectOpen] = useState(false);
 
   return (
     <>
       <header className="app-header">
         <nav className="main-nav">
-          <Link to="/" className="logo">Bella Toka</Link>
+          <Link to="/" className="logo">
+            Bella Toka
+          </Link>
           <ul className="nav-links">
             <li>
-              <Link to="/" className={pathname === '/' ? 'active' : ''}>
+              <Link to="/" className={pathname === "/" ? "active" : ""}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/about" className={pathname === '/about' ? 'active' : ''}>
+              <Link
+                to="/about"
+                className={pathname === "/about" ? "active" : ""}
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link to="/admin" className={pathname === '/admin' ? 'active' : ''}>
+              <Link
+                to="/admin"
+                className={pathname === "/admin" ? "active" : ""}
+              >
                 Admin
               </Link>
             </li>
             <li>
-              <Link to="/facility" className={pathname === '/facility' ? 'active' : ''}>
+              <Link
+                to="/facility"
+                className={pathname === "/facility" ? "active" : ""}
+              >
                 Facility
               </Link>
             </li>
             <li>
-              <button className="connect-btn" onClick={() => setIsConnectOpen(true)}>
+              <button
+                className="connect-btn"
+                onClick={() => setIsConnectOpen(true)}
+              >
                 Connect
               </button>
             </li>
