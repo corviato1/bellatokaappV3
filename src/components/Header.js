@@ -54,11 +54,20 @@ function Header() {
                 Facility
               </Link>
             </li>
-            {pathname !== "/admin" && (
+            {!isAdminAuthenticated && (
               <li>
                 <button
-                  className="connect-btn"
-                  onClick={() => setIsConnectOpen(true)}
+                  className={`connect-btn ${
+                    pathname === "/admin" ? "hidden-on-admin" : ""
+                  }`}
+                  onClick={() =>
+                    pathname !== "/admin" && setIsConnectOpen(true)
+                  }
+                  style={
+                    pathname === "/admin"
+                      ? { color: "transparent", pointerEvents: "none" }
+                      : {}
+                  }
                 >
                   Connect
                 </button>
