@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import '../styles/PasswordProtection.css';
+import React, { useState } from "react";
+import "../styles/PasswordProtection.css";
 
 const PasswordProtection = ({ onAuthenticated }) => {
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
-    
+    setError("");
+
     setTimeout(() => {
       setIsSubmitting(false);
-      setError('Password verification requires Netlify deployment');
+      setError("Password verification requires Netlify deployment");
     }, 1500);
   };
 
@@ -24,7 +24,7 @@ const PasswordProtection = ({ onAuthenticated }) => {
           <h1>Bella Toka</h1>
           <p>This site is password protected</p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="password-form">
           <div className="password-input-group">
             <input
@@ -36,18 +36,22 @@ const PasswordProtection = ({ onAuthenticated }) => {
               autoFocus
             />
           </div>
-          
-          <button type="submit" className="password-submit-btn" disabled={isSubmitting}>
-            {isSubmitting ? 'Verifying...' : 'Submit'}
+
+          <button
+            type="submit"
+            className="password-submit-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Verifying..." : "Submit"}
           </button>
-          
+
           <div className="animated-circle-container">
             <div className="animated-circle"></div>
           </div>
-          
+
           {error && <div className="password-error">{error}</div>}
         </form>
-        
+
         <div className="password-footer">
           <p>Powered by Netlify Identity</p>
         </div>
