@@ -54,14 +54,16 @@ function Header() {
                 Facility
               </Link>
             </li>
-            <li>
-              <button
-                className="connect-btn"
-                onClick={() => setIsConnectOpen(true)}
-              >
-                Connect
-              </button>
-            </li>
+            {pathname !== "/admin" && (
+              <li>
+                <button
+                  className="connect-btn"
+                  onClick={() => setIsConnectOpen(true)}
+                >
+                  Connect
+                </button>
+              </li>
+            )}
             {isAdminAuthenticated && (
               <li>
                 <button className="logout-btn" onClick={handleLogout}>
