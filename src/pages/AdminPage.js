@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from "react";
+import PasswordProtection from "../components/PasswordProtection";
 import adminTasksData from "../data/admin/adminTasks.json";
 import sectionsData from "../data/location/sections.json";
 import "../styles/AdminPage.css";
 
 const AdminPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const authenticated = localStorage.getItem("adminAuthenticated");
+    if (authenticated === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleAuthenticated = () => {
+    localStorage.setItem("adminAuthenticated", "true");
+    setIsAuthenticated(true);
+    window.location.reload();
+  };
+
+  if (!isAuthenticated) {
+    return <PasswordProtection onAuthenticated={handleAuthenticated} />;
+  }
+
+  return <AdminContent />;
+};
+
+const AdminContent = () => {
   const { locationTasks, scheduledTasks } = adminTasksData;
   const { sections } = sectionsData;
 

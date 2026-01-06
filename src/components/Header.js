@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Connect from "./Connect";
 import "../styles/Header.css";
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const pathname = location?.pathname || "/";
   const [isConnectOpen, setIsConnectOpen] = useState(false);
+  const isAdminAuthenticated =
+    localStorage.getItem("adminAuthenticated") === "true";
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminAuthenticated");
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -53,6 +62,13 @@ function Header() {
                 Connect
               </button>
             </li>
+            {isAdminAuthenticated && (
+              <li>
+                <button className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </header>

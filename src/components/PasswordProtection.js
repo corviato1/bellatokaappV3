@@ -20,23 +20,31 @@ const PasswordProtection = ({ onAuthenticated }) => {
       const data = await response.json();
 
       if (data.success) {
-        localStorage.setItem("authenticated", "true");
+        localStorage.setItem("adminAuthenticated", "true");
         onAuthenticated();
       } else {
         setError("Incorrect password");
       }
     } catch (err) {
-      setError("Authentication failed. Please try again.");
+      setError("Authentication service unavailable. Please try again.");
     }
 
     setIsSubmitting(false);
+  };
+
+  const handleTitleClick = () => {
+    if (localStorage.getItem("authenticated") === "true") {
+      onAuthenticated();
+    }
   };
 
   return (
     <div className="password-protection">
       <div className="password-container">
         <div className="password-header">
-          <h1>Bella Toka</h1>
+          <h1 onClick={handleTitleClick} style={{ cursor: "pointer" }}>
+            Bella Toka
+          </h1>
           <p>This site is password protected</p>
         </div>
 
@@ -48,6 +56,7 @@ const PasswordProtection = ({ onAuthenticated }) => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"
               className="password-input"
+              autoComplete="current-password"
               autoFocus
             />
           </div>
