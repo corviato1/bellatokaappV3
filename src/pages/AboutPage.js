@@ -111,7 +111,7 @@ const AboutPage = () => {
                   >
                     Link 1
                   </a>
-                  <a> </a>
+                  <p> </p>
                   <a
                     href="https://bellatoka.app"
                     target="_blank"
@@ -119,7 +119,7 @@ const AboutPage = () => {
                   >
                     Link 2
                   </a>
-                  <a> </a>
+                  <p> </p>
                   <a
                     href="https://bellatoka.app"
                     target="_blank"
@@ -127,7 +127,7 @@ const AboutPage = () => {
                   >
                     Link 3
                   </a>
-                  <a> </a>
+                  <p> </p>
                   <a
                     href="https://bellatoka.app"
                     target="_blank"
@@ -135,21 +135,13 @@ const AboutPage = () => {
                   >
                     Link 4
                   </a>
-                  <a> </a>
+                  <p> </p>
                   <a
                     href="https://bellatoka.app"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Link 5
-                  </a>
-                  <a> </a>
-                  <a
-                    href="https://bellatoka.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Link 6
                   </a>
                 </span>
               </div>
