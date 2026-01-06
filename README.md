@@ -8,7 +8,7 @@
 * Functional password for admin page
 * Update "PENDING" Our Pillars on /about
 * Update "More Info" Our Pillars on /about
-* Update Links to Learn Our Pillars on /about
+* Update Links to Learn Our Pillars on /about (not a priority)
 
 * /admin needs to display the weekly tasks, and the monthly tasks in /facility. It needs to be more user fiendly.
 
