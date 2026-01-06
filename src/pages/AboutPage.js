@@ -21,23 +21,35 @@ const AboutPage = () => {
 
         <section className="about-section">
           <h2>Our Pillars</h2>
+
           <div className="process-grid">
             <div className="process-item">
               <h3>Minimal Footprint</h3>
-              <p>- PENDING</p>
+              <ul className="pillar-list">
+                <li>Pending</li>
+              </ul>
             </div>
+
             <div className="process-item">
-              <h3>In depth Supply Chain</h3>
-              <p>- PENDING</p>
+              <h3>In Depth Supply Chain</h3>
+              <ul className="pillar-list">
+                <li>Pending</li>
+              </ul>
             </div>
+
             <div className="process-item">
-              <h3>Premium standards</h3>
-              <p>- Custom Terpen Orders</p>
-              <p>- More Info</p>
+              <h3>Premium Standards</h3>
+              <ul className="pillar-list">
+                <li>Custom terpene orders</li>
+                <li>More info</li>
+              </ul>
             </div>
+
             <div className="process-item">
-              <h3>Data Utiliztion</h3>
-              <p>- PENDING</p>
+              <h3>Data Utilization</h3>
+              <ul className="pillar-list">
+                <li>Pending</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -56,6 +68,7 @@ const AboutPage = () => {
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" placeholder="Your name" required />
               </div>
+
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
@@ -65,6 +78,7 @@ const AboutPage = () => {
                   required
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="subject">Subject</label>
                 <input
@@ -74,6 +88,7 @@ const AboutPage = () => {
                   required
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="message">Message</label>
                 <textarea
@@ -83,24 +98,29 @@ const AboutPage = () => {
                   required
                 ></textarea>
               </div>
+
               <button type="submit" className="submit-btn">
                 Send Message
               </button>
             </form>
+
             <div className="contact-info">
               <h3>Get in Touch</h3>
               <p>
                 Have questions about our cultivation process or interested in
                 learning more?
               </p>
+
               <div className="info-item">
                 <strong>Email:</strong>
                 <span>contact@bellatoka.com</span>
               </div>
+
               <div className="info-item">
                 <strong>Location:</strong>
                 <span>Sonoma County, California</span>
               </div>
+
               <div className="info-item">
                 <strong>Links To Learn</strong>
                 <span>

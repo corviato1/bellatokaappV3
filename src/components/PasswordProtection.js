@@ -6,15 +6,30 @@ const PasswordProtection = ({ onAuthenticated }) => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setError("Password verification requires Netlify deployment");
-    }, 1500);
+    try {
+      const response = await fetch("/.netlify/functions/auth", {
+        method: "POST",
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem("authenticated", "true");
+        onAuthenticated();
+      } else {
+        setError("Incorrect password");
+      }
+    } catch (err) {
+      setError("Authentication failed. Please try again.");
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -53,7 +68,7 @@ const PasswordProtection = ({ onAuthenticated }) => {
         </form>
 
         <div className="password-footer">
-          <p>Powered by Netlify Identity</p>
+          <p>Cannabis Cultivation Tracking System</p>
         </div>
       </div>
     </div>
