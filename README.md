@@ -4,8 +4,6 @@
 
 
 ## TO DO:
-* /home search button needs to also have a "click to scan your product".  That button will open camera so user can scan qr code.
-* Functional password for admin page
 * Update "PENDING" Our Pillars on /about
 * Update "More Info" Our Pillars on /about
 * Update Links to Learn Our Pillars on /about (not a priority)
