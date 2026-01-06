@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import sectionsData from '../data/location/sections.json';
 import plantsData from '../data/location/plants.json';
+import QRScanner from '../components/QRScanner';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showQRScanner, setShowQRScanner] = useState(false);
   const { sections } = sectionsData;
   const { plants } = plantsData;
 
@@ -30,8 +32,33 @@ const HomePage = () => {
     }
   };
 
+  const handleQRResult = (result) => {
+    setSearchQuery(result);
+    setShowQRScanner(false);
+  };
+
   const getPlantInSection = (sectionId) => {
     return plants.find(p => p.currentLocation === sectionId && p.status === 'active');
+  };
+
+  const renderSectionCard = (section) => {
+    const plant = getPlantInSection(section.id);
+    return (
+      <div 
+        key={section.id} 
+        className={`location-card ${plant ? 'occupied' : 'empty'}`}
+        onClick={() => navigate(`/location/${section.id}`)}
+      >
+        <div className="location-name">{section.name}</div>
+        {plant && (
+          <div className="plant-info">
+            <span className="strain-name">{plant.strainDisplay}</span>
+            <span className="plant-id">{plant.id}</span>
+          </div>
+        )}
+        {!plant && <div className="empty-label">Empty</div>}
+      </div>
+    );
   };
 
   return (
@@ -51,132 +78,49 @@ const HomePage = () => {
             className="search-input"
           />
           <button type="submit" className="search-btn">Search</button>
+          <button 
+            type="button" 
+            className="scan-btn"
+            onClick={() => setShowQRScanner(true)}
+          >
+            Scan QR to View Your Data
+          </button>
         </form>
       </div>
 
-      <div className="sections-grid">
-        <div className="section-group">
-          <h2>Vegetative Areas</h2>
-          <div className="location-cards">
-            {vegetativeSections.map(section => {
-              const plant = getPlantInSection(section.id);
-              return (
-                <div 
-                  key={section.id} 
-                  className={`location-card ${plant ? 'occupied' : 'empty'}`}
-                  onClick={() => navigate(`/location/${section.id}`)}
-                >
-                  <div className="location-name">{section.name}</div>
-                  {plant && (
-                    <div className="plant-info">
-                      <span className="strain-name">{plant.strainDisplay}</span>
-                      <span className="plant-id">{plant.id}</span>
-                    </div>
-                  )}
-                  {!plant && <div className="empty-label">Empty</div>}
-                </div>
-              );
-            })}
+      <div className="sections-landscape">
+        <div className="section-group veg-section">
+          <h2>Vegetative</h2>
+          <div className="location-cards veg-grid">
+            {vegetativeSections.map(renderSectionCard)}
           </div>
         </div>
 
-        <div className="section-group">
-          <h2>Flowering Areas</h2>
-          <div className="location-cards flowering">
-            {floweringSections.map(section => {
-              const plant = getPlantInSection(section.id);
-              return (
-                <div 
-                  key={section.id} 
-                  className={`location-card ${plant ? 'occupied' : 'empty'}`}
-                  onClick={() => navigate(`/location/${section.id}`)}
-                >
-                  <div className="location-name">{section.name}</div>
-                  {plant && (
-                    <div className="plant-info">
-                      <span className="strain-name">{plant.strainDisplay}</span>
-                      <span className="plant-id">{plant.id}</span>
-                    </div>
-                  )}
-                  {!plant && <div className="empty-label">Empty</div>}
-                </div>
-              );
-            })}
+        <div className="section-group flower-section">
+          <h2>Flowering</h2>
+          <div className="location-cards flower-grid">
+            {floweringSections.map(renderSectionCard)}
           </div>
         </div>
 
-        <div className="section-group">
-          <h2>Hanging Areas</h2>
-          <div className="location-cards hanging">
-            {hangingSections.map(section => {
-              const plant = getPlantInSection(section.id);
-              return (
-                <div 
-                  key={section.id} 
-                  className={`location-card ${plant ? 'occupied' : 'empty'}`}
-                  onClick={() => navigate(`/location/${section.id}`)}
-                >
-                  <div className="location-name">{section.name}</div>
-                  {plant && (
-                    <div className="plant-info">
-                      <span className="strain-name">{plant.strainDisplay}</span>
-                      <span className="plant-id">{plant.id}</span>
-                    </div>
-                  )}
-                  {!plant && <div className="empty-label">Empty</div>}
-                </div>
-              );
-            })}
+        <div className="section-group hang-section">
+          <h2>Hanging</h2>
+          <div className="location-cards hang-grid">
+            {hangingSections.map(renderSectionCard)}
           </div>
         </div>
 
-        <div className="section-group">
+        <div className="section-group decon-section">
           <h2>Decontamination</h2>
-          <div className="location-cards decon">
-            {deconSections.map(section => {
-              const plant = getPlantInSection(section.id);
-              return (
-                <div 
-                  key={section.id} 
-                  className={`location-card ${plant ? 'occupied' : 'empty'}`}
-                  onClick={() => navigate(`/location/${section.id}`)}
-                >
-                  <div className="location-name">{section.name}</div>
-                  {plant && (
-                    <div className="plant-info">
-                      <span className="strain-name">{plant.strainDisplay}</span>
-                      <span className="plant-id">{plant.id}</span>
-                    </div>
-                  )}
-                  {!plant && <div className="empty-label">Empty</div>}
-                </div>
-              );
-            })}
+          <div className="location-cards decon-grid">
+            {deconSections.map(renderSectionCard)}
           </div>
         </div>
 
-        <div className="section-group">
-          <h2>Curing Areas</h2>
-          <div className="location-cards curing">
-            {curingSections.map(section => {
-              const plant = getPlantInSection(section.id);
-              return (
-                <div 
-                  key={section.id} 
-                  className={`location-card ${plant ? 'occupied' : 'empty'}`}
-                  onClick={() => navigate(`/location/${section.id}`)}
-                >
-                  <div className="location-name">{section.name}</div>
-                  {plant && (
-                    <div className="plant-info">
-                      <span className="strain-name">{plant.strainDisplay}</span>
-                      <span className="plant-id">{plant.id}</span>
-                    </div>
-                  )}
-                  {!plant && <div className="empty-label">Empty</div>}
-                </div>
-              );
-            })}
+        <div className="section-group curing-section">
+          <h2>Curing</h2>
+          <div className="location-cards curing-grid">
+            {curingSections.map(renderSectionCard)}
           </div>
         </div>
       </div>
@@ -189,6 +133,13 @@ const HomePage = () => {
           Admin
         </button>
       </div>
+
+      {showQRScanner && (
+        <QRScanner 
+          onScanResult={handleQRResult}
+          onClose={() => setShowQRScanner(false)}
+        />
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Connect from "./Connect";
-import "./Header.css";
+import "../styles/Header.css";
 
 function Header() {
   const location = useLocation();

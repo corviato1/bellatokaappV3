@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Connect.css';
+import '../styles/Connect.css';
 
 const Connect = ({ isOpen, onClose }) => {
   const [view, setView] = useState('main');

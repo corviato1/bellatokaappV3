@@ -8,5 +8,117 @@
     { "id": "check-fungus-mold", "label": "Check for fungus/mold", "category": "pest-check" },
     { "id": "inspect-bud-rot", "label": "Inspect for bud rot", "category": "plant-health" },
     { "id": "inspect-branches", "label": "Inspect for broken branches", "category": "plant-health" }
-  ]
+  ],
+  "scheduledTasks": {
+    "Monday": {
+      "Week 1": [
+        { "id": "mon-w1-1", "label": "Deep clean all equipment", "category": "maintenance" },
+        { "id": "mon-w1-2", "label": "Check nutrient levels", "category": "feeding" },
+        { "id": "mon-w1-3", "label": "Inspect all vegetative plants", "category": "inspection" }
+      ],
+      "Week 2": [
+        { "id": "mon-w2-1", "label": "Calibrate pH meters", "category": "maintenance" },
+        { "id": "mon-w2-2", "label": "Update plant logs", "category": "documentation" },
+        { "id": "mon-w2-3", "label": "Check HVAC filters", "category": "maintenance" }
+      ],
+      "Week 3": [
+        { "id": "mon-w3-1", "label": "Inventory nutrient stock", "category": "inventory" },
+        { "id": "mon-w3-2", "label": "Clean reservoirs", "category": "maintenance" },
+        { "id": "mon-w3-3", "label": "Pest prevention spray", "category": "pest-control" }
+      ],
+      "Week 4": [
+        { "id": "mon-w4-1", "label": "Monthly equipment inspection", "category": "maintenance" },
+        { "id": "mon-w4-2", "label": "Review growth data", "category": "documentation" },
+        { "id": "mon-w4-3", "label": "Order supplies for next month", "category": "inventory" }
+      ]
+    },
+    "Tuesday": {
+      "Week 1": [
+        { "id": "tue-w1-1", "label": "Water all flowering plants", "category": "watering" },
+        { "id": "tue-w1-2", "label": "Adjust light heights", "category": "lighting" },
+        { "id": "tue-w1-3", "label": "Defoliate as needed", "category": "plant-care" }
+      ],
+      "Week 2": [
+        { "id": "tue-w2-1", "label": "Foliar spray application", "category": "feeding" },
+        { "id": "tue-w2-2", "label": "Check for pests", "category": "pest-control" },
+        { "id": "tue-w2-3", "label": "Train new growth", "category": "plant-care" }
+      ],
+      "Week 3": [
+        { "id": "tue-w3-1", "label": "Measure EC/PPM levels", "category": "feeding" },
+        { "id": "tue-w3-2", "label": "Clean intake vents", "category": "maintenance" },
+        { "id": "tue-w3-3", "label": "Photo documentation", "category": "documentation" }
+      ],
+      "Week 4": [
+        { "id": "tue-w4-1", "label": "Flush plants if needed", "category": "feeding" },
+        { "id": "tue-w4-2", "label": "Inspect trellis netting", "category": "maintenance" },
+        { "id": "tue-w4-3", "label": "Check drainage systems", "category": "maintenance" }
+      ]
+    },
+    "Wednesday": {
+      "Week 1": [
+        { "id": "wed-w1-1", "label": "Mix fresh nutrient batch", "category": "feeding" },
+        { "id": "wed-w1-2", "label": "Check humidity levels", "category": "environment" },
+        { "id": "wed-w1-3", "label": "Inspect root health", "category": "plant-health" }
+      ],
+      "Week 2": [
+        { "id": "wed-w2-1", "label": "Calibrate environmental sensors", "category": "maintenance" },
+        { "id": "wed-w2-2", "label": "Prune lower canopy", "category": "plant-care" },
+        { "id": "wed-w2-3", "label": "Check CO2 levels", "category": "environment" }
+      ],
+      "Week 3": [
+        { "id": "wed-w3-1", "label": "Deep clean growing area", "category": "maintenance" },
+        { "id": "wed-w3-2", "label": "Update strain records", "category": "documentation" },
+        { "id": "wed-w3-3", "label": "Test water quality", "category": "feeding" }
+      ],
+      "Week 4": [
+        { "id": "wed-w4-1", "label": "Prepare harvest equipment", "category": "maintenance" },
+        { "id": "wed-w4-2", "label": "Check light timers", "category": "lighting" },
+        { "id": "wed-w4-3", "label": "Inspect electrical connections", "category": "maintenance" }
+      ]
+    },
+    "Thursday": {
+      "Week 1": [
+        { "id": "thu-w1-1", "label": "Apply beneficial bacteria", "category": "feeding" },
+        { "id": "thu-w1-2", "label": "Check for mold/mildew", "category": "pest-control" },
+        { "id": "thu-w1-3", "label": "Adjust nutrient ratios", "category": "feeding" }
+      ],
+      "Week 2": [
+        { "id": "thu-w2-1", "label": "Stake tall plants", "category": "plant-care" },
+        { "id": "thu-w2-2", "label": "Check fan operation", "category": "environment" },
+        { "id": "thu-w2-3", "label": "Log temperature ranges", "category": "documentation" }
+      ],
+      "Week 3": [
+        { "id": "thu-w3-1", "label": "IPM treatment application", "category": "pest-control" },
+        { "id": "thu-w3-2", "label": "Inspect irrigation lines", "category": "maintenance" },
+        { "id": "thu-w3-3", "label": "Check air circulation", "category": "environment" }
+      ],
+      "Week 4": [
+        { "id": "thu-w4-1", "label": "Prep drying room", "category": "maintenance" },
+        { "id": "thu-w4-2", "label": "Review monthly progress", "category": "documentation" },
+        { "id": "thu-w4-3", "label": "Clean all tools", "category": "maintenance" }
+      ]
+    },
+    "Friday": {
+      "Week 1": [
+        { "id": "fri-w1-1", "label": "Weekend prep watering", "category": "watering" },
+        { "id": "fri-w1-2", "label": "Check all timer settings", "category": "maintenance" },
+        { "id": "fri-w1-3", "label": "Final pest inspection", "category": "pest-control" }
+      ],
+      "Week 2": [
+        { "id": "fri-w2-1", "label": "Top off reservoirs", "category": "feeding" },
+        { "id": "fri-w2-2", "label": "Backup monitoring data", "category": "documentation" },
+        { "id": "fri-w2-3", "label": "Secure facility for weekend", "category": "maintenance" }
+      ],
+      "Week 3": [
+        { "id": "fri-w3-1", "label": "Full facility walkthrough", "category": "inspection" },
+        { "id": "fri-w3-2", "label": "Prepare weekend feeding", "category": "feeding" },
+        { "id": "fri-w3-3", "label": "Check security systems", "category": "maintenance" }
+      ],
+      "Week 4": [
+        { "id": "fri-w4-1", "label": "Month-end inventory count", "category": "inventory" },
+        { "id": "fri-w4-2", "label": "Submit monthly reports", "category": "documentation" },
+        { "id": "fri-w4-3", "label": "Plan next month schedule", "category": "documentation" }
+      ]
+    }
+  }
 }

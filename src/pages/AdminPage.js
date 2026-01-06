@@ -4,12 +4,12 @@ import sectionsData from '../data/location/sections.json';
 import '../styles/AdminPage.css';
 
 const AdminPage = () => {
-  const { locationTasks } = adminTasksData;
+  const { locationTasks, scheduledTasks } = adminTasksData;
   const { sections } = sectionsData;
 
+  const [dayOffset, setDayOffset] = useState(0);
   const [formData, setFormData] = useState({
     locationId: 'v1',
-    date: new Date().toISOString().split('T')[0],
     completedTasks: [],
     notes: '',
     photos: []
@@ -24,6 +24,53 @@ const AdminPage = () => {
       setReports(JSON.parse(saved));
     }
   }, []);
+
+  const getDayInfo = (offset) => {
+    const date = new Date();
+    date.setDate(date.getDate() + offset);
+    
+    const dayOfWeek = date.getDay();
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayName = dayNames[dayOfWeek];
+    
+    const dayOfMonth = date.getDate();
+    const weekNumber = Math.ceil(dayOfMonth / 7);
+    const weekName = `Week ${Math.min(weekNumber, 4)}`;
+    
+    return {
+      date,
+      dayName,
+      weekName,
+      dayOfWeek,
+      isWeekday: dayOfWeek >= 1 && dayOfWeek <= 5
+    };
+  };
+
+  const getDateLabel = (offset) => {
+    const info = getDayInfo(offset);
+    if (offset === 0) {
+      return `Today ${info.dayName} ${info.weekName}`;
+    } else if (offset === -1) {
+      return `Yesterday ${info.dayName} ${info.weekName}`;
+    } else if (offset === 1) {
+      return `Tomorrow ${info.dayName} ${info.weekName}`;
+    } else if (offset < -1) {
+      return `${Math.abs(offset)} Days Ago`;
+    } else {
+      return `${offset} Days From Now`;
+    }
+  };
+
+  const getCurrentTasks = () => {
+    const info = getDayInfo(dayOffset);
+    
+    if (!info.isWeekday || !scheduledTasks[info.dayName]) {
+      return [];
+    }
+    
+    const dayTasks = scheduledTasks[info.dayName];
+    return dayTasks[info.weekName] || [];
+  };
 
   const handleTaskToggle = (taskId) => {
     setFormData(prev => {
@@ -68,9 +115,13 @@ const AdminPage = () => {
       return;
     }
 
+    const info = getDayInfo(dayOffset);
     const report = {
       id: `report-${Date.now()}`,
       ...formData,
+      date: info.date.toISOString().split('T')[0],
+      dayName: info.dayName,
+      weekName: info.weekName,
       submittedAt: new Date().toISOString()
     };
 
@@ -80,7 +131,6 @@ const AdminPage = () => {
 
     setFormData({
       locationId: formData.locationId,
-      date: new Date().toISOString().split('T')[0],
       completedTasks: [],
       notes: '',
       photos: []
@@ -90,7 +140,13 @@ const AdminPage = () => {
   };
 
   const getTaskLabel = (taskId) => {
-    const task = locationTasks.find(t => t.id === taskId);
+    const allTasks = [...locationTasks];
+    Object.values(scheduledTasks).forEach(dayTasks => {
+      Object.values(dayTasks).forEach(weekTasks => {
+        allTasks.push(...weekTasks);
+      });
+    });
+    const task = allTasks.find(t => t.id === taskId);
     return task ? task.label : taskId;
   };
 
@@ -100,7 +156,17 @@ const AdminPage = () => {
     localStorage.setItem('adminReports', JSON.stringify(updatedReports));
   };
 
-  const groupedTasks = {
+  const currentTasks = getCurrentTasks();
+  const dayInfo = getDayInfo(dayOffset);
+
+  const groupedScheduledTasks = currentTasks.reduce((acc, task) => {
+    const cat = task.category || 'general';
+    if (!acc[cat]) acc[cat] = [];
+    acc[cat].push(task);
+    return acc;
+  }, {});
+
+  const groupedLocationTasks = {
     'Equipment': locationTasks.filter(t => t.category === 'equipment'),
     'Plant Care': locationTasks.filter(t => t.category === 'plant-care'),
     'Pest Checks': locationTasks.filter(t => t.category === 'pest-check'),
@@ -108,7 +174,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="admin-page">
+    <div className="admin-page landscape">
       <div className="admin-header">
         <h1>Staff Daily Report</h1>
         <button 
@@ -120,111 +186,159 @@ const AdminPage = () => {
       </div>
 
       {!showHistory ? (
-        <form onSubmit={handleSubmit} className="admin-form">
-          <div className="form-section">
-            <h2>Location & Date</h2>
-            <div className="form-grid">
-              <div className="form-group">
-                <label>Location</label>
-                <select
-                  value={formData.locationId}
-                  onChange={(e) => setFormData(prev => ({ ...prev, locationId: e.target.value }))}
-                >
-                  {sections.map(section => (
-                    <option key={section.id} value={section.id}>
-                      {section.name} ({section.type})
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Date</label>
-                <input
-                  type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
-                />
-              </div>
+        <div className="admin-content-landscape">
+          <div className="day-navigation">
+            <button 
+              className="nav-btn prev"
+              onClick={() => setDayOffset(prev => prev - 1)}
+            >
+              Previous Day
+            </button>
+            <div className="current-day-display">
+              <h2>{getDateLabel(dayOffset)}</h2>
+              {!dayInfo.isWeekday && (
+                <span className="weekend-notice">Weekend - No scheduled tasks</span>
+              )}
             </div>
+            <button 
+              className="nav-btn next"
+              onClick={() => setDayOffset(prev => prev + 1)}
+            >
+              Next Day
+            </button>
           </div>
 
-          <div className="form-section">
-            <h2>Tasks Completed</h2>
-            {Object.entries(groupedTasks).map(([category, tasks]) => (
-              <div key={category} className="task-category">
-                <h3>{category}</h3>
-                <div className="tasks-grid">
-                  {tasks.map(task => (
-                    <label 
-                      key={task.id} 
-                      className={`task-item ${formData.completedTasks.includes(task.id) ? 'selected' : ''}`}
+          <form onSubmit={handleSubmit} className="admin-form landscape-form">
+            <div className="form-columns">
+              <div className="form-column left-column">
+                <div className="form-section">
+                  <h2>Location</h2>
+                  <div className="form-group">
+                    <select
+                      value={formData.locationId}
+                      onChange={(e) => setFormData(prev => ({ ...prev, locationId: e.target.value }))}
                     >
-                      <input
-                        type="checkbox"
-                        checked={formData.completedTasks.includes(task.id)}
-                        onChange={() => handleTaskToggle(task.id)}
-                      />
-                      <span className="task-label">{task.label}</span>
-                    </label>
+                      {sections.map(section => (
+                        <option key={section.id} value={section.id}>
+                          {section.name} ({section.type})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {currentTasks.length > 0 && (
+                  <div className="form-section scheduled-tasks-section">
+                    <h2>Scheduled Tasks for {dayInfo.dayName} {dayInfo.weekName}</h2>
+                    {Object.entries(groupedScheduledTasks).map(([category, tasks]) => (
+                      <div key={category} className="task-category">
+                        <h3>{category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}</h3>
+                        <div className="tasks-grid">
+                          {tasks.map(task => (
+                            <label 
+                              key={task.id} 
+                              className={`task-item scheduled ${formData.completedTasks.includes(task.id) ? 'selected' : ''}`}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={formData.completedTasks.includes(task.id)}
+                                onChange={() => handleTaskToggle(task.id)}
+                              />
+                              <span className="task-label">{task.label}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-column right-column">
+                <div className="form-section">
+                  <h2>Daily Checklist</h2>
+                  {Object.entries(groupedLocationTasks).map(([category, tasks]) => (
+                    <div key={category} className="task-category">
+                      <h3>{category}</h3>
+                      <div className="tasks-grid">
+                        {tasks.map(task => (
+                          <label 
+                            key={task.id} 
+                            className={`task-item ${formData.completedTasks.includes(task.id) ? 'selected' : ''}`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={formData.completedTasks.includes(task.id)}
+                              onChange={() => handleTaskToggle(task.id)}
+                            />
+                            <span className="task-label">{task.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
 
-          <div className="form-section">
-            <h2>Photos</h2>
-            <div className="photo-upload">
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handlePhotoUpload}
-                id="photo-input"
-                className="photo-input"
-              />
-              <label htmlFor="photo-input" className="photo-upload-btn">
-                + Add Photos
-              </label>
-            </div>
-            {formData.photos.length > 0 && (
-              <div className="photo-previews">
-                {formData.photos.map((photo, idx) => (
-                  <div key={idx} className="photo-preview">
-                    <img src={photo.data} alt={photo.name} />
-                    <button type="button" onClick={() => removePhoto(idx)} className="remove-photo">
-                      X
-                    </button>
+                <div className="form-section">
+                  <h2>Photos</h2>
+                  <div className="photo-upload">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handlePhotoUpload}
+                      id="photo-input"
+                      className="photo-input"
+                    />
+                    <label htmlFor="photo-input" className="photo-upload-btn">
+                      + Add Photos
+                    </label>
                   </div>
-                ))}
+                  {formData.photos.length > 0 && (
+                    <div className="photo-previews">
+                      {formData.photos.map((photo, idx) => (
+                        <div key={idx} className="photo-preview">
+                          <img src={photo.data} alt={photo.name} />
+                          <button type="button" onClick={() => removePhoto(idx)} className="remove-photo">
+                            X
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-section">
+                  <h2>Notes</h2>
+                  <textarea
+                    placeholder="Additional observations, issues, or notes..."
+                    value={formData.notes}
+                    onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                    rows={4}
+                  />
+                </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          <div className="form-section">
-            <h2>Notes</h2>
-            <textarea
-              placeholder="Additional observations, issues, or notes..."
-              value={formData.notes}
-              onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-              rows={4}
-            />
-          </div>
-
-          <button type="submit" className="submit-btn">Submit Report</button>
-        </form>
+            <button type="submit" className="submit-btn">Submit Report</button>
+          </form>
+        </div>
       ) : (
         <div className="report-history">
           <h2>Report History</h2>
           {reports.length === 0 ? (
             <p className="no-reports">No reports submitted yet.</p>
           ) : (
-            <div className="reports-list">
+            <div className="reports-list landscape-reports">
               {reports.map(report => (
                 <div key={report.id} className="report-card">
                   <div className="report-header">
                     <span className="report-location">{report.locationId.toUpperCase()}</span>
-                    <span className="report-date">{new Date(report.date).toLocaleDateString()}</span>
+                    <span className="report-date">
+                      {new Date(report.date).toLocaleDateString()}
+                      {report.dayName && ` - ${report.dayName}`}
+                      {report.weekName && ` (${report.weekName})`}
+                    </span>
                     <button 
                       className="delete-report" 
                       onClick={() => deleteReport(report.id)}
