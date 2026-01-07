@@ -122,7 +122,7 @@ const AboutPage = () => {
               </div>
 
               <div className="info-item">
-                <strong>Links To Learn</strong>
+                <strong>Links To Learn:</strong>
                 <span>
                   <a
                     href="https://bellatoka.app"
