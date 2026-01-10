@@ -121,7 +121,7 @@ const AboutPage = () => {
                 <span>Sonoma County, California</span>
               </div>
 
-              <div className="info-item">
+              {/* <div className="info-item">
                 <strong>Links To Learn:</strong>
                 <span>
                   <a
@@ -164,7 +164,7 @@ const AboutPage = () => {
                     Link 5
                   </a>
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
